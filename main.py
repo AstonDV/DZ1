@@ -49,7 +49,15 @@ def edit_note():
 
 
 def delete_note():
-    pass
+    note_id = int(input("Enter the id of the note to delete: "))
+    index = find_note_index(note_id)
+
+    if index != -1:
+        del notes[index]
+        save_notes(notes)
+        print("Note deleted successfully!")
+    else:
+        print("Note not found.")
 
 
 def filter_notes_by_date():
