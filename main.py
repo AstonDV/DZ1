@@ -1,16 +1,49 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import json
+import datetime
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def add_note():
+    title = input("Enter the note title: ")
+    body = input("Enter the note body: ")
+    current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    note = {
+        "id": len(notes) + 1,
+        "title": title,
+        "body": body,
+        "created_at": current_time,
+        "updated_at": current_time
+    }
+    notes.append(note)
+    save_notes(notes)
+    print("Note added successfully!!!")
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def read_notes():
+    pass
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+def save_notes():
+    pass
+
+
+def edit_note():
+    pass
+
+
+def delete_note():
+    pass
+
+
+def filter_notes_by_date():
+    pass
+
+
+def find_note_index():
+    pass
+
+
+
+
+
+notes = read_notes()
