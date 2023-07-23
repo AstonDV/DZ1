@@ -61,7 +61,21 @@ def delete_note():
 
 
 def filter_notes_by_date():
-    pass
+    date = input("Enter the date (YYYY-MM-DD) to filter notes: ")
+    filtered_notes = [note for note in notes if
+                      note["created_at"].startswith(date) or note["updated_at"].startswith(date)]
+
+    if filtered_notes:
+        print("Filtered Notes:")
+        for note in filtered_notes:
+            print(f"ID: {note['id']}")
+            print(f"Title: {note['title']}")
+            print(f"Body: {note['body']}")
+            print(f"Created At: {note['created_at']}")
+            print(f"Updated At: {note['updated_at']}")
+            print("--------------------")
+    else:
+        print("No notes found for the specified date.")
 
 
 def find_note_index():
