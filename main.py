@@ -31,7 +31,21 @@ def save_notes():
 
 
 def edit_note():
-    pass
+    note_id = int(input("Enter the id of the note to edit: "))
+    index = find_note_index()
+
+    if index != -1:
+        title = input("Enter the new title: ")
+        body = input("Enter the new body: ")
+        current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        notes[index]["title"] = title
+        notes[index]["body"] = body
+        notes[index]["updated_at"] = current_time
+        save_notes(notes)
+        print("Note edited successfully!")
+    else:
+        print("Note not found.")
 
 
 def delete_note():
