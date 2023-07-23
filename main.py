@@ -25,7 +25,7 @@ def read_notes():
     return notes
 
 
-def save_notes():
+def save_notes(notes):
     with open('notes.json', 'w') as f:
         json.dump(notes, f)
 
@@ -78,8 +78,11 @@ def filter_notes_by_date():
         print("No notes found for the specified date.")
 
 
-def find_note_index():
-    pass
+def find_note_index(note_id):
+    for i, note in enumerate(notes):
+        if note["id"] == note_id:
+            return i
+    return -1
 
 
 
