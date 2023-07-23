@@ -7,7 +7,7 @@ def read_notes():
         with open('notes.json', 'r') as f:
             notes = json.load(f)
     except FileNotFoundError:
-        notes = []  # Если файл не найден, инициализируем пустым списком
+        notes = []
     return notes
 
 
@@ -82,7 +82,9 @@ def filter_notes_by_date():
         print("No notes found for the specified date.")
 
 
-def view_all_notes(notes):
+def view_all_notes():
+    global notes
+    notes = read_notes()
     sorted_notes = sorted(notes, key=lambda note: note["created_at"])
 
     if sorted_notes:
@@ -94,8 +96,8 @@ def view_all_notes(notes):
             print(f"Created At: {note['created_at']}")
             print(f"Updated At: {note['updated_at']}")
             print("--------------------")
-        else:
-            print("No notes found.")
+    else:
+        print("No notes found.")
 
 
 def find_note_index(note_id):
@@ -106,11 +108,11 @@ def find_note_index(note_id):
 
 
 commands = {
-    "add": lambda: add_note(),
+    "add": add_note,
     "edit": edit_note,
     "delete": delete_note,
     "filter": filter_notes_by_date,
-    "view": lambda: view_all_notes(notes)
+    "view": view_all_notes
 }
 
 notes = read_notes()
