@@ -82,7 +82,7 @@ def filter_notes_by_date():
         print("No notes found for the specified date.")
 
 
-def view_all_notes():
+def view_all_notes(notes):
     sorted_notes = sorted(notes, key=lambda note: note["created_at"])
 
     if sorted_notes:
@@ -94,8 +94,8 @@ def view_all_notes():
             print(f"Created At: {note['created_at']}")
             print(f"Updated At: {note['updated_at']}")
             print("--------------------")
-    else:
-        print("No notes found.")
+        else:
+            print("No notes found.")
 
 
 def find_note_index(note_id):
@@ -122,6 +122,6 @@ while True:
         break
 
     if command in commands:
-        commands[command]()
+        commands[command](notes)
     else:
         print("Invalid command.")
