@@ -26,7 +26,8 @@ def read_notes():
 
 
 def save_notes():
-    pass
+    with open('notes.json', 'w') as f:
+        json.dump(notes, f)
 
 
 def edit_note():
