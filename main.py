@@ -2,6 +2,20 @@ import json
 import datetime
 
 
+def read_notes():
+    try:
+        with open('notes.json', 'r') as f:
+            notes = json.load(f)
+    except FileNotFoundError:
+        notes = []  # Если файл не найден, инициализируем пустым списком
+    return notes
+
+
+def save_notes(notes):
+    with open('notes.json', 'w') as f:
+        json.dump(notes, f, indent=4)
+
+
 def add_note():
     title = input("Enter the note title: ")
     body = input("Enter the note body: ")
@@ -19,20 +33,6 @@ def add_note():
     notes.append(note)
     save_notes(notes)
     print("Note added successfully!")
-
-
-def read_notes():
-    try:
-        with open('notes.json', 'r') as f:
-            notes = json.load(f)
-    except FileNotFoundError:
-        notes = []  # Если файл не найден, инициализируем пустым списком
-    return notes
-
-
-def save_notes(notes):
-    with open('notes.json', 'w') as f:
-        json.dump(notes, f, indent=4)
 
 
 def edit_note():
@@ -106,22 +106,22 @@ def find_note_index(note_id):
 
 
 commands = {
-    "add": add_note,
+    "add": lambda: add_note(),
     "edit": edit_note,
     "delete": delete_note,
     "filter": filter_notes_by_date,
-    "view": view_all_notes
+    "view": lambda: view_all_notes(notes)
 }
 
 notes = read_notes()
 
 while True:
-    command = input("Enter a command (add, edit, delete, filter, view): ")
+    command = input("Enter a command (add, edit, delete, filter, view, exit): ")
 
     if command == "exit":
         break
 
     if command in commands:
-        commands[command](notes)
+        commands[command]()
     else:
         print("Invalid command.")
