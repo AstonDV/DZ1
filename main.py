@@ -20,7 +20,9 @@ def add_note():
 
 
 def read_notes():
-    pass
+    with open('notes.json', 'r') as f:
+        notes = json.load(f)
+    return notes
 
 
 def save_notes():
